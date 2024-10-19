@@ -27,7 +27,7 @@ function Navbar() {
     <header>
         <nav className="flex justify-between p-4 bg-slate-800 text-white align-middle">
             <div className="self-center">
-                <h1>lOGO</h1>
+                <h1 className="capitalize font-semibold text-pretty">lOGO</h1>
             </div>
             {/* menu */}
             <div className="self-center">
@@ -49,23 +49,24 @@ function Navbar() {
                     />
                 ))}
             </div>
-                
 
-            
-                
-                <div className=" flex  px-4 py-1 text-center lign-middle cursor-pointer  outline-none self-center ">
+            <div className=" flex  px-4 py-1 text-center   outline-none self-center  ">
                     <label className=" relative flex  gap-2 self-center cursor-pointer bg-gray-600 rounded-full  transition has-[:checked]:bg-slate-900 [-webkit-tap-highlight-color:_transparent]  w-16 px-12 py-[0.2rem] has-[:checkeg]:text-orange-600 ">
                         
                         <input type="checkbox" onClick={toggleDark}
                         className=" has-[:checked]:bg-amber-600 has-[:checked]:border-amber-600 peer self-center  sr-only"
                         />
                         <span
-                        className="absolute inset-x-0 left-0 size-4 m-1 bg-gray-600 rounded-full ring-[4px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-1 peer-checked:bg-white peer-checked:ring-transparent"
+                        className="absolute inset-x-0 left-0 size-4 m-1 bg-gray-600 rounded-full ring-[4px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-1 peer-checked:bg-white peer-checked:ring-[#ffbb52] duration-500"
                         ></span>
                         
-                        <span className=" self-center font-medium  text-slate-200 peer-[:checked]:text-orange-600">{!isdarkMode? `Light`:`Dark`}</span>
+                        <span className=" self-center font-medium  text-slate-200 peer-[:checked]:text-[#ffbb52] ease-in-out duration-500">{!isdarkMode? `Light`:`Dark`}</span>
                     </label>
-                </div>
+            </div>   
+
+            
+                
+                
                 
             
         </nav>
@@ -76,15 +77,19 @@ function Navbar() {
 function DisplayMenuLink({text}){
     return (
         <li>
-            <NavLink>{text}</NavLink>
+            <NavLink to={`/${text}`}
+            className={({isActive})=>`text-gray-200 font-semibold duration-200 
+               ${isActive?`text-orange-400 border-b border-sky-600`:``}
+                hover:text-gray-400 hover:border-b hover:border-orange-400 hover:py-1`}
+            >{text}</NavLink>
         </li>
     )
 }
 
 function DispalyBtn({text}){
     return (
-        <a className="outline outline-1 px-2 py-[0.2rem] rounded-xl text-center align-middle">
-            <Link>{text}</Link>
+        <a className=" ">
+            <Link className="px-2 py-[0.245rem] font-semibold text-black bg-orange-400 rounded-lg hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 align-middle ">{text}</Link>
         </a>
     )
 }
