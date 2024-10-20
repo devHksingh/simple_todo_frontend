@@ -12,7 +12,7 @@ export default {
         cta: "rgba(var(--cta))",
         "cta-active": "rgba(var(--cta-active))",
         "cta-text": "rgba(var(--cta-text))",
-
+        // text:"rgba(var(--cta-text))",
         grape: "rgba(var(--grape))",
       },
     },

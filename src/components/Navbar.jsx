@@ -8,6 +8,7 @@ function Navbar() {
     const [isdarkMode,setIsDarkMode] = useState(true)
     function toggleDark(){
         setIsDarkMode(!isdarkMode)
+       
         if(isdarkMode){
             localStorage.setItem("theme","dark")
         }else{
@@ -17,11 +18,17 @@ function Navbar() {
         if(selectedTheme === 'dark'){
             document.body.classList.add(selectedTheme)
             document.body.classList.remove('light')
+        }else if(window.matchMedia("prefers-color-schema: dark").matches){
+            console.log("prefers-color-schema: dark");
+            
+            document.body.classList.remove("light")
+            document.body.classList.add("dark")
         }else{
             console.log("LIGHT");
             document.body.classList.remove("dark")
             document.body.classList.add("light")
         }
+        
     }
   return (
     <header>
