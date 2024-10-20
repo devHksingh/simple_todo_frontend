@@ -6,7 +6,7 @@ import { FaSquareGithub } from "react-icons/fa6";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="flex justify-between bottom-0 absolute w-full p-4 pl-4 pr-4">
         <div className=""><span>© 2020 Your Company, Inc. All rights reserved.</span></div>
         <div className="flex gap-6 justify-start">
             <a href="" className="cursor-pointer text-2xl text-slate-600 hover:text-slate-400"><FaFacebook /></a>

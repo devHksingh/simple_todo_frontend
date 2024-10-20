@@ -82,16 +82,41 @@ function Navbar() {
 }
 
 function DisplayMenuLink({text}){
-    return (
-        <li>
+
+    if(text === "Home"){
+        return (
+            <li>
+                <NavLink to={``}
+            className={({isActive})=>`text-gray-200 font-semibold duration-200 
+               ${isActive?`text-orange-400 border-b border-sky-600`:``}
+                hover:text-gray-400 hover:border-b hover:border-orange-400 hover:py-1`}
+            >{text}</NavLink>
+            </li>
+        )
+    }else{
+        return (
             <NavLink to={`/${text}`}
             className={({isActive})=>`text-gray-200 font-semibold duration-200 
                ${isActive?`text-orange-400 border-b border-sky-600`:``}
                 hover:text-gray-400 hover:border-b hover:border-orange-400 hover:py-1`}
             >{text}</NavLink>
-        </li>
-    )
+        )
+    }
+
+    // return (
+    //     <li>
+            
+    //     </li>
+    // )
 }
+
+/*
+<NavLink to={`/${text}`}
+            className={({isActive})=>`text-gray-200 font-semibold duration-200 
+               ${isActive?`text-orange-400 border-b border-sky-600`:``}
+                hover:text-gray-400 hover:border-b hover:border-orange-400 hover:py-1`}
+            >{text}</NavLink>
+*/
 
 function DispalyBtn({text}){
     return (
