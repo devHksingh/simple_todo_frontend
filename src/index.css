@@ -14,8 +14,14 @@
   --cta: 139, 92, 246;
   --cta-active: 124, 58, 237;
   --cta-text: 255, 255, 255;
-
+  --text-black: 0,0,0;
+    
   background: rgba(var(--background));
+  /* color: rgba(var(--border)); */
+}
+.light h2{
+    --black: 0, 0, 0;
+    color: rgba(var(--black));
 }
 
 .dark {
@@ -27,8 +33,8 @@
   --copy-primary: 250, 250, 250;
   --copy-secondary: 115, 115, 115;
 
-  /* --cta: 99, 102, 241; */
-  --cta: 255, 183, 1;
+  --cta: 99, 102, 241;
+  /* --cta: 255, 183, 1; */
   --cta-active: 79, 70, 229;
   --cta-text: 255, 255, 255;
 
