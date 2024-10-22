@@ -1,3 +1,5 @@
+// import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 import LoginImg from "../assets/Computer login-rafiki.webp"
 import axios from "axios"
 
@@ -21,20 +23,40 @@ function Login() {
   
   // apiCall()
   // formdata
+  const navigate = useNavigate()
+  
+  
   function submitHandeler(event){
+    
     event.preventDefault()
-    console.log(event);
+    
+    
+    // console.log(event);
     const emailEl = document.querySelector('#email')
     const emailElValue = emailEl.value
     const passwordEl = document.querySelector('#password')
     const passwordElValue = passwordEl.value
     const emailErrorEl = document.querySelector("#emailError")
     const passwordErrorEl = document.querySelector("#passwordError")
+    const formBtnEl = document.querySelector('#form-btn')
+    const loginErrorEl = document.querySelector('#login-error')
+    // const loaderEl = document.querySelector('#loader')
 
-    console.log(emailEl);
-    console.log(emailElValue);
+    // console.log(loaderEl);
+    formBtnEl.textContent = 'Processing'
+    formBtnEl.disabled= true
+    formBtnEl.style.opacity ='60%';
+    formBtnEl.style.cursor ='not-allowed'
+    // loaderEl.classList.remove='hidden'
+    // loaderEl.style.display='inline-block'
+    // console.log(loaderEl);
+    
+    
+
+    // console.log(emailEl);
+    // console.log(emailElValue);
     // console.log(formSchema.parse({email:emailElValue,password:passwordElValue}));
-    console.log(emailElValue);
+    // console.log(emailElValue);
     
     if(emailElValue === "" || !emailElValue.includes('@') || !emailElValue.includes('.com')){
       console.log("Enter Valid email id",emailElValue);
@@ -49,58 +71,141 @@ function Login() {
     
     async function postReq() {
       try {
+        
         const res = await axios.post('/api/users/login',{
           email:emailElValue,
           password:passwordElValue
         })
         if(res){
-          console.log(res);
+          // console.log(res);
           console.log(res.data);
-          
+          localStorage.setItem("token",res.data.token)
+          navigate('/profile')
         }
       } catch (error) {
         console.log(error);
+        console.log(error.message);
+        console.log(error.status);
+        loginErrorEl.textContent= 'Login error!. Check your credential.Try it again!'
         
+      }finally{
+        formBtnEl.textContent ='login'
+        // loaderEl.style.display='none'
+        formBtnEl.disabled= false
+        formBtnEl.style.opacity ='100%';
+        console.log('formBtnEl',formBtnEl);
+        formBtnEl.style.cursor ='pointer'
+        document.querySelector('#loginForm').reset()
       }
     }
     postReq()
 
-    document.querySelector('#loginForm').reset()
+    
     // passwordEl.reset()
-    console.log("emailEl",emailEl.textContent);
-    console.log("passwordEl",passwordEl.textContent);
+    // console.log("emailEl",emailEl.textContent);
+    // console.log("passwordEl",passwordEl.textContent);
     
     
   }
+//   function submitHandeler(event) {
+//     event.preventDefault(); // Prevent form submission refresh
+   
+
+    
+//     const emailEl = document.querySelector('#email');
+//     const passwordEl = document.querySelector('#password');
+    
+//     if (!emailEl || !passwordEl) {
+//         console.log("Email or Password elements are missing");
+//         return;
+//     }
+
+//     const emailElValue = emailEl.value;
+//     const passwordElValue = passwordEl.value;
+
+//     const emailErrorEl = document.querySelector("#emailError");
+//     const passwordErrorEl = document.querySelector("#passwordError");
+//     const loginErrorEl = document.querySelector('#login-error');
+//     loginErrorEl.textContent=''
+
+//     if (!emailElValue.includes('@') || !emailElValue.includes('.com')) {
+//         emailErrorEl.style.display = "block";
+//         emailErrorEl.textContent = "Enter a valid email id.";
+//     }
+
+//     if (passwordElValue.length <= 3) {
+//         passwordErrorEl.textContent = "Password must be at least 4 characters long.";
+//     }
+
+//     // Async API call
+//     async function postReq() {
+//         try {
+//             const res = await axios.post('/api/users/login', {
+//                 email: emailElValue,
+//                 password: passwordElValue
+//             });
+
+//             if (res) {
+//                 // Update loading state after success
+                
+//                 console.log(res.data);
+//             }
+//         } catch (error) {
+//             console.error(error);
+//             loginErrorEl.textContent = 'Login error! Check your credentials and try again.';
+//         } 
+//     }
+
+//     // Call the API
+//     postReq();
+
+//     // Reset the form (optional)
+//     document.querySelector('#loginForm').reset();
+// }
+
   return (
     <div className="">
       <div className="container mx-auto ">
-        <div className="grid grid-cols-2 justify-center place-content-center items-center min-h-full">
+        <div className="grid items-center justify-center min-h-full grid-cols-2 place-content-center">
           <div className="flex flex-col gap-4 border p-8 rounded-xl shadow-lg max-w-[88%]  self-center w-full ">
-            <h2 className="text-4xl text-center mb-4 font-bold text-gray-200">Login</h2>
+            <h2 className="mb-4 text-4xl font-bold text-center text-gray-200">Login</h2>
             <form name="LoginForm" onSubmit={submitHandeler} id="loginForm"
-            className="flex flex-col gap-4 max-w- border p-8 rounded-xl shadow-lg">
+            className="flex flex-col gap-4 p-8 border shadow-lg max-w- rounded-xl">
               <label className="block" htmlFor="Email">
                 <span className="block mb-1 text-gray-500 text:md after:content-['*'] after:ml-0.5 after:text-red-500">Email</span>
                 <input  
-                className="peer w-full rounded-lg p-1 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 placeholder:text-gray-600 text-black font-medium" type="email" name="Email" id="email" placeholder="Email" />
-                <span className="hidden mt-2 peer-invalid:block text-red-500 text-sm" id="emailError">Enter Valid email id</span>
+                className="w-full p-1 font-medium text-black rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 placeholder:text-gray-600" type="email" name="Email" id="email" placeholder="Email" />
+                <span className="hidden mt-2 text-sm text-red-500 peer-invalid:block" id="emailError">Enter Valid email id</span>
               </label>
               <label htmlFor="password">
                 <span className="block mb-1 text-gray-500 text:md after:content-['*'] after:ml-0.5 after:text-red-500">Password</span>
                 <input
-                className="w-full rounded-lg p-1 focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 placeholder:text-gray-600 text-black font-medium"
+                className="w-full p-1 font-medium text-black rounded-lg focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 placeholder:text-gray-600"
                 type="password" name="password" id="password" placeholder="Password" />
-                <span className="text-red-500 text-sm mt-2" id="passwordError"></span>
+                <span className="mt-2 text-sm text-red-500" id="passwordError"></span>
               </label>
-              <button 
-              className="border mt-2 py-1 rounded-xl font-semibold text-md bg-orange-400 hover:bg-orange-600 border-none shadow-md"
+              {/* <button 
+              className="py-1 mt-2 font-semibold bg-orange-400 border border-none shadow-md rounded-xl text-md hover:bg-orange-600"
               type="submit"
               
-              >Login</button>
+              >Login</button> */}
+              <button id="form-btn"
+                className={`border mt-2 py-1 rounded-xl font-semibold text-md bg-orange-400 hover:bg-orange-600 border-none shadow-md `}
+                type="submit"
+                // disabled={isloading} // Disable the button when loading
+              >Login
+                {/* <span className="inline-block ml-2" id="loader">
+                  <span className="inline-block bg-black   shadow rounded-full px-[0.125rem] py-[0.125rem] animate-ping  ml-2 duration-0  " ></span>
+                  <span className="inline-block bg-black   shadow rounded-full px-[0.125rem] py-[0.125rem] animate-ping  ml-2 duration-700  " ></span>
+                  <span className="inline-block  bg-black   shadow rounded-full px-[0.125rem] py-[0.125rem] animate-ping  ml-2 duration-1000  " ></span>
+                </span> */}
+              </button>
+              
+              <span className="text-red-600 text-md" id="login-error"></span>
             </form>
+            
           </div>
-          <div className="invisible md:visible max-w-screen-lg">
+          <div className="invisible max-w-screen-lg md:visible">
             <img src={LoginImg} alt="login image"  />
           </div>
         </div>
