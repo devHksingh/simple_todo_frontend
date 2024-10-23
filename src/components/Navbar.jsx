@@ -4,7 +4,11 @@ import { NavLink,Link } from "react-router-dom"
 
 function Navbar() {
     const tabs = ["Home","About","Feature"]
-    const btns = ["SignIn","SignUp"]
+    
+    const btnsNavigation = [
+        {text:"SignIn",href:'signIn'},
+        {text:"SignUp",href:'signUp'}
+    ]
     const [isdarkMode,setIsDarkMode] = useState(true)
     function toggleDark(){
         setIsDarkMode(!isdarkMode)
@@ -32,13 +36,13 @@ function Navbar() {
     }
   return (
     <header>
-        <nav className="flex justify-between p-4 bg-slate-800 text-white align-middle">
+        <nav className="flex justify-between p-4 text-white align-middle bg-slate-800">
             <div className="self-center">
-                <h1 className="capitalize font-semibold text-pretty">lOGO</h1>
+                <h1 className="font-semibold capitalize text-pretty">lOGO</h1>
             </div>
             {/* menu */}
             <div className="self-center">
-                <ul className="flex gap-1 md:gap-8 align-middle justify-between ">
+                <ul className="flex justify-between gap-1 align-middle md:gap-8 ">
                     {tabs.map((tab)=>(
                         <DisplayMenuLink
                             key= {tabs.indexOf(tab)}
@@ -48,16 +52,23 @@ function Navbar() {
                 </ul>
             </div>
             {/* buttons */}
-            <div className="space-x-4 self-center">
+            {/* <div className="self-center space-x-4">
                 {btns.map((btn)=>(
                     <DispalyBtn
                         key={btns.indexOf(btn)}
                         text={btn}
                     />
                 ))}
+            </div> */}
+            <div className="flex gap-2">
+            <div className="self-center space-x-4">
+                {btnsNavigation.map((btn)=>(
+                    <Link to={`${btn.href}`} key={btn.text} className="px-2 py-[0.245rem] font-semibold text-black bg-orange-400 rounded-lg hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 align-middle ">{btn.text}</Link>
+                ))}
             </div>
+            
 
-            <div className=" flex  px-4 py-1 text-center   outline-none self-center  ">
+            <div className="flex self-center px-4 py-1 text-center outline-none ">
                     <label className=" relative flex  gap-2 self-center cursor-pointer bg-gray-600 rounded-full  transition has-[:checked]:bg-slate-900 [-webkit-tap-highlight-color:_transparent]  w-16 px-12 py-[0.2rem] has-[:checkeg]:text-orange-600 ">
                         
                         <input type="checkbox" onClick={toggleDark}
@@ -69,7 +80,9 @@ function Navbar() {
                         
                         <span className=" self-center font-medium  text-slate-200 peer-[:checked]:text-[#ffbb52] ease-in-out duration-500">{!isdarkMode? `Light`:`Dark`}</span>
                     </label>
-            </div>   
+            </div>
+            </div>
+               
 
             
                 
@@ -118,12 +131,13 @@ function DisplayMenuLink({text}){
             >{text}</NavLink>
 */
 
-function DispalyBtn({text}){
-    return (
-        <a className=" ">
-            <Link className="px-2 py-[0.245rem] font-semibold text-black bg-orange-400 rounded-lg hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 align-middle ">{text}</Link>
-        </a>
-    )
-}
+// function DispalyBtn({text}){
+//     return (
+//         <a className="">
+//             <Link className="px-2 py-[0.245rem] font-semibold text-black bg-orange-400 rounded-lg hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 align-middle ">{text}</Link>
+//         </a>
+//     )
+// }
+
 
 export default Navbar
