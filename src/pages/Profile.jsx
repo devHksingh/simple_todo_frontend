@@ -7,6 +7,7 @@ function Profile() {
    
     
     const [data,setData] = useState({})
+    const [todo,setTodo] = useState([])
     useEffect(()=>{
         async function apiCall(){
             const token = localStorage.getItem("token")
@@ -27,6 +28,10 @@ function Profile() {
                      setData(response.data.profile)
                      console.log("DATA #####" ,data);
                      }
+                     setTodo(response.data.profile.todo)
+                     console.log("res todo" ,response.data.profile.todo);
+                     console.log("res todo" ,response.data.profile.todo);
+                     
                      
                      
                 } catch (error) {
@@ -38,14 +43,35 @@ function Profile() {
         }
        
         apiCall()
-        
-        
-        
+
     }, [])
     
     
   return (
-    <div>Profile</div>
+    <div className="container mx-auto">
+        <div className="flex flex-col items-center justify-center p-4 mt-12 mb-4 border rounded-lg shadow-lg">
+            <h2>User Profile</h2>
+            <p>Name:{`${data.name}`}</p>
+            <p>Email:{`${data.email}`}</p>
+            <p>Id:{`${data.id}`}</p>
+            <p>UserName:{`${data.userName}`}</p>
+            {/* <p>Todo : {`${data.todo.length}`}</p> */}
+            <p>Total todo: {`${todo.length}`}</p>
+            
+        </div>
+        <div className="flex items-center justify-center gap-4 m-4">
+            {
+                todo.map((t)=>(
+                    <article key={todo.index} className="inline-block p-4 border shadow-lg rounded-xl">
+                        <h2>Title: {t.title}</h2>
+                        <p>Body: {t.content}</p>
+                        <p>todo id: {t.id}</p>
+                        <p>createdAt: {new Date(t.createdAt).toLocaleTimeString()}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </div>
   )
 }
 
