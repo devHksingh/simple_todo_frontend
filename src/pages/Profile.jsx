@@ -51,23 +51,27 @@ function Profile() {
         localStorage.removeItem("token")
         navigate('/signIn')
     }
+    function addTodoHandeler(){
+        navigate('/addtodo')
+    }
   return (
     <div className="container mx-auto font-serif">
         <div className="relative flex flex-col items-center justify-center p-4 mt-12 mb-4 border rounded-lg shadow-lg ">
             <h2>User Profile</h2>
-            <p>Name:{`${data.name}`}</p>
-            <p>Email:{`${data.email}`}</p>
-            <p>Id:{`${data.id}`}</p>
-            <p>UserName:{`${data.userName}`}</p>
+            <p>Name: {`${data.name}`}</p>
+            <p>Email: {`${data.email}`}</p>
+            <p>User Id: {`${data.id}`}</p>
+            <p>UserName: {`${data.userName}`}</p>
             {/* <p>Todo : {`${data.todo.length}`}</p> */}
             <p>Total todo: {`${todo.length}`}</p>
             <button 
             className="absolute top-0 right-0 px-2 py-1 mt-2 mr-4 font-serif bg-orange-400 border rounded-lg shadow-md hover:bg-orange-600"
             onClick={logoutHandler}
             >Logout</button>
+            <button className="px-2 mt-2 text-white border rounded-lg border-sky-400 bg-sky-400" onClick={addTodoHandeler}>Add todo+</button>
             
         </div>
-        <div className="flex items-center justify-center gap-4 m-4 ">
+        <div className="flex flex-col items-center justify-center gap-4 m-4 md:flex-row">
             {
                 todo.map((t)=>(
                     <article key={todo.index} className="inline-block p-4 border shadow-lg rounded-xl">

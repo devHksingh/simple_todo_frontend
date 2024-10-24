@@ -9,6 +9,7 @@ import Login from './pages/Login.jsx'
 import SignUp from './pages/SignUp.jsx'
 import ErrorPage from './ErrorPage.jsx'
 import Profile from './pages/Profile.jsx'
+import CreateNewTodo from './pages/CreateNewTodo.jsx'
 
 const  router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const  router = createBrowserRouter(
       <Route path='signIn' element={<Login/>}/>
       <Route path='signUp' element={<SignUp/>}/>
       <Route path='profile' element={<Profile/>}/>
+      <Route path='addTodo' element={<CreateNewTodo/>}/>
     </Route>
   )
 )
