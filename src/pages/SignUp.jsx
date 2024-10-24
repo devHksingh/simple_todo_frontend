@@ -1,10 +1,12 @@
 import axios from 'axios';
 import signUpImg from '../assets/Sign up.webp';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const [loginErr,setLoginErr] = useState("")
-  console.log("Component Rendered");
+  // console.log("Component Rendered");
+  const navigate = useNavigate()
 
   function signUpFormHandeler(e) {
     e.preventDefault(); // Prevent default form submission
@@ -69,6 +71,7 @@ function SignUp() {
             const token = res.data.token
             console.log(res.data.token);
             localStorage.setItem('token',token)
+            navigate('/profile')
           }
           
         } catch (error) {
