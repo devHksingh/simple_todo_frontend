@@ -2,10 +2,11 @@
 
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 function Profile() {
    
-    
+    const navigate = useNavigate()
     const [data,setData] = useState({})
     const [todo,setTodo] = useState([])
     useEffect(()=>{
@@ -46,10 +47,13 @@ function Profile() {
 
     }, [])
     
-    
+    function logoutHandler(){
+        localStorage.removeItem("token")
+        navigate('/signIn')
+    }
   return (
-    <div className="container mx-auto">
-        <div className="flex flex-col items-center justify-center p-4 mt-12 mb-4 border rounded-lg shadow-lg">
+    <div className="container mx-auto font-serif">
+        <div className="relative flex flex-col items-center justify-center p-4 mt-12 mb-4 border rounded-lg shadow-lg ">
             <h2>User Profile</h2>
             <p>Name:{`${data.name}`}</p>
             <p>Email:{`${data.email}`}</p>
@@ -57,9 +61,13 @@ function Profile() {
             <p>UserName:{`${data.userName}`}</p>
             {/* <p>Todo : {`${data.todo.length}`}</p> */}
             <p>Total todo: {`${todo.length}`}</p>
+            <button 
+            className="absolute top-0 right-0 px-2 py-1 mt-2 mr-4 font-serif bg-orange-400 border rounded-lg shadow-md hover:bg-orange-600"
+            onClick={logoutHandler}
+            >Logout</button>
             
         </div>
-        <div className="flex items-center justify-center gap-4 m-4">
+        <div className="flex items-center justify-center gap-4 m-4 ">
             {
                 todo.map((t)=>(
                     <article key={todo.index} className="inline-block p-4 border shadow-lg rounded-xl">
@@ -71,6 +79,7 @@ function Profile() {
                 ))
             }
         </div>
+        
     </div>
   )
 }
