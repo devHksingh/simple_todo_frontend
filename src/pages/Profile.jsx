@@ -1,8 +1,7 @@
-
-
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import profileImg from '../assets/vecteezy_a-silhouette-of-a-man-in-a-suit-and-tie_49579807.png'
 
 function Profile() {
    
@@ -55,34 +54,47 @@ function Profile() {
         navigate('/addtodo')
     }
   return (
-    <div className="container mx-auto font-serif">
-        <div className="relative flex flex-col items-center justify-center p-4 mt-12 mb-4 border rounded-lg shadow-lg ">
-            <h2>User Profile</h2>
-            <p>Name: {`${data.name}`}</p>
-            <p>Email: {`${data.email}`}</p>
-            <p>User Id: {`${data.id}`}</p>
-            <p>UserName: {`${data.userName}`}</p>
-            {/* <p>Todo : {`${data.todo.length}`}</p> */}
-            <p>Total todo: {`${todo.length}`}</p>
-            <button 
-            className="absolute top-0 right-0 px-2 py-1 mt-2 mr-4 font-serif bg-orange-400 border rounded-lg shadow-md hover:bg-orange-600"
-            onClick={logoutHandler}
-            >Logout</button>
-            <button className="px-2 mt-2 text-white border rounded-lg border-sky-400 bg-sky-400" onClick={addTodoHandeler}>Add todo+</button>
-            
+    <div className="container mx-auto ">
+        
+        <div className="w-full max-w-sm mx-auto my-8 border rounded-lg shadow-lg bg-inherit">
+
+            <div className="flex flex-col items-center px-4 pt-4 pb-10">
+                
+                    <img className="w-24 h-24 mb-3 bg-white border border-none rounded-full shadow-lg" src={profileImg} alt="Bonnie image"/>
+                
+                <h5 className="mb-1 text-xl font-medium text-gray-900 y-50 text-inherit">{`${data.name}`}</h5>
+                
+                <div className="grid items-center justify-center grid-cols-2">
+                    <span className="text-sm text-gray-500 opacity-50 text-inherit">Id: <span className="text-inherit">{`${data.id}`}</span></span>
+                    <span className="text-sm text-gray-500 opacity-50 text-inherit">UserName: <span className="text-inherit">{`${data.userName}`}</span></span>
+                    <span className="text-sm text-gray-500 opacity-50 text-inherit">Total todo: <span className="text-inherit">{`${todo.length}`}</span></span>
+                    <span className="text-sm text-gray-500 opacity-50 text-inherit">Email: <span className="text-inherit">{` ${data.email}`}</span></span>
+                </div>
+                <div className="flex mt-4 md:mt-6">
+                    <a href="#" className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    onClick={addTodoHandeler}
+                    >Add Todo+</a>
+                    <a href="#" className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg ms-2 focus:outline-none hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    onClick={logoutHandler}
+                    >Logout</a>
+                </div>
+            </div>
         </div>
+        
         <div className="flex flex-col items-center justify-center gap-4 m-4 md:flex-row">
             {
                 todo.map((t)=>(
                     <article key={todo.index} className="inline-block p-4 border shadow-lg rounded-xl">
-                        <h2>Title: {t.title}</h2>
-                        <p>Body: {t.content}</p>
-                        <p>todo id: {t.id}</p>
-                        <p>createdAt: {new Date(t.createdAt).toLocaleTimeString()}</p>
+                        <h2> <span className="opacity-70">Title:</span> {t.title}</h2>
+                        <p> <span className="opacity-70">Body:</span> {t.content}</p>
+                        <p> <span className="capitalize opacity-70">todo id:</span> {t.id}</p>
+                        <p> <span className="capitalize opacity-70">createdAt:</span> {new Date(t.createdAt).toLocaleString()}</p>
                     </article>
                 ))
             }
         </div>
+
+        
         
     </div>
   )
