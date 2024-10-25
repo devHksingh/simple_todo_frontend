@@ -38,10 +38,9 @@ function CreateNewTodo() {
                 });
         
                 if (res) {
-                  console.log('SIGNUP RESPONSE: ', res);
-                  const token = res.data.token
-                  console.log(res.data.token);
-                  localStorage.setItem('token',token)
+                  console.log('todo response: ', res);
+                  
+                  
                   navigate('/profile')
                 }
                 
