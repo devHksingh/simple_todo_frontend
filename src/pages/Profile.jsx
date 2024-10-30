@@ -81,7 +81,7 @@ function Profile() {
             </div>
         </div>
         
-        <div className="flex flex-col items-center justify-center gap-4 m-4 md:flex-row">
+        {/* <div className="flex flex-col items-center justify-center gap-4 m-4 md:flex-row">
             {
                 todo.map((t)=>(
                     <article key={todo.index} className="inline-block p-4 border shadow-lg rounded-xl">
@@ -92,6 +92,30 @@ function Profile() {
                     </article>
                 ))
             }
+        </div> */}
+        <div className="relative overflow-auto shadow-md sm:rounded-lg">
+            <table
+            className="w-full text-sm text-left text-gray-500 rtl:text-right "
+            >
+                <thead
+                className="text-xs text-gray-400 uppercase bg-gray-700"
+                >
+                    <th scope="col" className="px-6 py-3">Title</th>
+                    <th scope="col" className="px-6 py-3">Content</th>
+                    <th scope="col" className="px-6 py-3">Todo Id</th>
+                    <th scope="col" className="px-6 py-3">Action</th>
+                </thead>
+                <tbody>
+                    {todo.map((t)=>(
+                        <tr key={t.id}>
+                            <th>{t.title}</th>
+                            <td>{t.content}</td>
+                            <td>{t.id}</td>
+                            <td>{new Date(t.createdAt).toLocaleString()}</td>
+                        </tr>
+                    ))}
+                </tbody>   
+            </table>
         </div>
 
         
