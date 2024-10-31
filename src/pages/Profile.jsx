@@ -138,6 +138,11 @@ function Profile() {
                             
                             <td>{t.id}</td>
                             <td>{new Date(t.createdAt).toLocaleString()}</td>
+                            <td className="flex items-center gap-1 px-6 py-4">
+                                <a href="#" className="font-medium text-blue-600 hover:underline">View</a>
+                                <a href="#" className="font-medium text-blue-600 hover:underline ms-3">Edit</a>
+                                <a href="#" className="font-medium text-red-600 hover:underline ms-3">Remove</a>
+                            </td>
                         </tr>
                        
                     ))}
