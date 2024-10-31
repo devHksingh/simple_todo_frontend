@@ -8,6 +8,23 @@ function Profile() {
     const navigate = useNavigate()
     const [data,setData] = useState({})
     const [todo,setTodo] = useState([])
+    
+
+    function  truncateString(inputStr,wordLimit){
+        const words = inputStr.split(' ');
+        // If the number of words is less than or equal to the limit, return the original string
+        if(words.length <= wordLimit){
+            console.log("inputStr :",inputStr);
+            
+            return inputStr
+        }
+        // Join only the words within the limit and add "..."
+        const truncated = words.slice(0,wordLimit).join(' ')+'...'
+        console.log("truncated :",truncated);
+        
+        return truncated 
+    }
+    
     useEffect(()=>{
         async function apiCall(){
             const token = localStorage.getItem("token")
@@ -18,19 +35,20 @@ function Profile() {
                             'Authorization':`Bearer ${token}`
                         }
                     })
-                     if(response){
-                        console.log("apiData" ,response);
+                    if(response){
+                        // console.log("apiData" ,response);
                     //  setData(response.data)
                     //  console.log(data);
-                     console.log("apiData",response);
-                     console.log("RES .DATA" ,response.data);
-                     console.log("RES .DATA PROFILE" ,response.data.profile);
+                    //  console.log("apiData",response);
+                    //  console.log("RES .DATA" ,response.data);
+                    //  console.log("RES .DATA PROFILE" ,response.data.profile);
                      setData(response.data.profile)
-                     console.log("DATA #####" ,data);
+                    //  console.log("DATA #####" ,data);
                      }
                      setTodo(response.data.profile.todo)
-                     console.log("res todo" ,response.data.profile.todo);
-                     console.log("res todo" ,response.data.profile.todo);
+                    //  console.log("res todo" ,response.data.profile.todo);
+
+                    
                      
                      
                      
@@ -43,6 +61,7 @@ function Profile() {
         }
        
         apiCall()
+        
 
     }, [])
     
@@ -103,16 +122,24 @@ function Profile() {
                     <th scope="col" className="px-6 py-3">Title</th>
                     <th scope="col" className="px-6 py-3">Content</th>
                     <th scope="col" className="px-6 py-3">Todo Id</th>
+                    <th scope="col" className="px-6 py-3">created At</th>
                     <th scope="col" className="px-6 py-3">Action</th>
                 </thead>
                 <tbody>
                     {todo.map((t)=>(
-                        <tr key={t.id}>
-                            <th>{t.title}</th>
-                            <td>{t.content}</td>
+                        <tr
+                        className="border border-b border-gray-700 rounded-xl" 
+                        key={t.id}>
+                            <th
+                            className="px-6 py-4 font-semibold text-gray-600 whitespace-nowrap"
+                            >{t.title}</th>
+                            <td className="break-words text-pretty">{truncateString(t.content, 6)}</td>
+                            
+                            
                             <td>{t.id}</td>
                             <td>{new Date(t.createdAt).toLocaleString()}</td>
                         </tr>
+                       
                     ))}
                 </tbody>   
             </table>
