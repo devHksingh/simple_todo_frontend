@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import profileImg from '../assets/vecteezy_a-silhouette-of-a-man-in-a-suit-and-tie_49579807.png'
 
 function Profile() {
@@ -64,6 +64,13 @@ function Profile() {
         
 
     }, [])
+
+    function editHandler(id){
+        console.log(id)
+    }
+    function removeHandler(id){
+        console.log(id)
+    }
     
     function logoutHandler(){
         localStorage.removeItem("token")
@@ -114,7 +121,7 @@ function Profile() {
         </div> */}
         <div className="relative overflow-auto shadow-md sm:rounded-lg">
             <table
-            className="w-full text-sm text-left text-gray-500 rtl:text-right "
+            className="w-full text-sm text-center text-gray-500 rtl:text-right"
             >
                 <thead
                 className="text-xs text-gray-400 uppercase bg-gray-700"
@@ -123,7 +130,7 @@ function Profile() {
                     <th scope="col" className="px-6 py-3">Content</th>
                     <th scope="col" className="px-6 py-3">Todo Id</th>
                     <th scope="col" className="px-6 py-3">created At</th>
-                    <th scope="col" className="px-6 py-3">Action</th>
+                    <th scope="col" className="px-6 py-3 text-left">Action</th>
                 </thead>
                 <tbody>
                     {todo.map((t)=>(
@@ -136,12 +143,16 @@ function Profile() {
                             <td className="break-words text-pretty">{truncateString(t.content, 6)}</td>
                             
                             
-                            <td>{t.id}</td>
+                            <td className="">{t.id}</td>
                             <td>{new Date(t.createdAt).toLocaleString()}</td>
-                            <td className="flex items-center gap-1 px-6 py-4">
-                                <a href="#" className="font-medium text-blue-600 hover:underline">View</a>
-                                <a href="#" className="font-medium text-blue-600 hover:underline ms-3">Edit</a>
-                                <a href="#" className="font-medium text-red-600 hover:underline ms-3">Remove</a>
+                            <td className="flex items-center gap-1 px-6 py-4 mx-auto ">
+                                <Link to={{
+                                    pathname:`/singleTodo/${t.id}`
+                                }}
+                                
+                                 className="font-medium text-blue-600 hover:underline">View</Link>
+                                <a href="#" onClick={()=>editHandler(t.id)} className="font-medium text-blue-600 hover:underline ms-3">Edit</a>
+                                <a href="#" onClick={()=>removeHandler(t.id)} className="font-medium text-red-600 hover:underline ms-3">Remove</a>
                             </td>
                         </tr>
                        
