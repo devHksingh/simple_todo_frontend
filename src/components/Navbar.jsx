@@ -94,6 +94,7 @@ function Navbar() {
   )
 }
 
+// eslint-disable-next-line react/prop-types
 function DisplayMenuLink({text}){
 
     if(text === "Home"){

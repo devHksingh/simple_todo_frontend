@@ -19,10 +19,10 @@
   background: rgba(var(--background));
   /* color: rgba(var(--border)); */
 }
-.light h2 {
+/* .light h2 {
   --black: 0, 0, 0;
   color: rgba(var(--black));
-}
+} */
 
 .dark {
   --background: 0, 0, 34;
