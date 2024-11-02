@@ -8,19 +8,21 @@ function Profile() {
     const navigate = useNavigate()
     const [data,setData] = useState({})
     const [todo,setTodo] = useState([])
-    
+    const token = localStorage.getItem("token")
+    const authToken = `Bearer ${token}`
+    console.log("#######TOKEN############## :",authToken)
 
     function  truncateString(inputStr,wordLimit){
         const words = inputStr.split(' ');
         // If the number of words is less than or equal to the limit, return the original string
         if(words.length <= wordLimit){
-            console.log("inputStr :",inputStr);
+            // console.log("inputStr :",inputStr);
             
             return inputStr
         }
         // Join only the words within the limit and add "..."
         const truncated = words.slice(0,wordLimit).join(' ')+'...'
-        console.log("truncated :",truncated);
+        // console.log("truncated :",truncated);
         
         return truncated 
     }
@@ -68,9 +70,47 @@ function Profile() {
     function editHandler(id){
         console.log(id)
     }
-    function removeHandler(id){
-        console.log(id)
+    // async function removeHandler(id){
+        
+    //     console.log(authToken)
+    //     console.log("removeHandler :",id)
+    //     const axiosRes = await axios.delete('/api/todo/delete',
+    //         {data:{
+    //             "ids":[id]
+    //         }},{
+    //             headers:{
+    //                 'Authorization':authToken
+    //             }
+    //         }
+    //     )
+    //     if(axiosRes){
+    //         console.log(axiosRes)
+    //         window.location.reload()
+    //     }
+    // }
+    async function removeHandler(id) {
+        console.log("AuthToken:", authToken);
+        console.log("removeHandler ID:", id);
+    
+        try {
+            const axiosRes = await axios.delete('/api/todo/delete', {
+                headers: {
+                    'Authorization': authToken
+                },
+                data: {
+                    ids: [id]
+                }
+            });
+            
+            if (axiosRes) {
+                console.log("Delete response:", axiosRes);
+                window.location.reload();
+            }
+        } catch (error) {
+            console.error("Error deleting todo:", error);
+        }
     }
+    
     
     function logoutHandler(){
         localStorage.removeItem("token")
