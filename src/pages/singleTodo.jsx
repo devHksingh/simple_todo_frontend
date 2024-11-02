@@ -3,39 +3,16 @@ import { useEffect,useState } from "react"
 import { useParams } from "react-router-dom"
 
 function SingleTodo() {
-    // useEffect(()=>{
-    //     async function fecthSingleTodo(){
-    //         console.log("TOKEN :",localStorage.getItem("token"));
-    //         const userToken = `Bearer ${localStorage.getItem('token')}`
-    //         console.log(userToken);
-            
-    //         try {
-    //             console.log(todoId)
-    //             const res = await axios.get('/api/todo/singleTodo',{
-    //                 "todoId":11
-    //             },
-    //         {
-    //             headers:{
-    //                 'Authorization':userToken
-    //             }
-    //             })
-    //             if(res){
-    //                 console.log(res)
-
-    //             }
-    //         } catch (error) {
-    //            console.log(error);
-                
-    //         }
-    //     }
-    //     fecthSingleTodo()
-    // },[])
+    
     const [data,setData] = useState({})
     const {todoId} = useParams()
     console.log(todoId)
     const token = localStorage.getItem("token")
     const authToken = `Bearer ${token}`
     console.log("TOKEN",authToken)
+
+    
+    
     async function fecthSingleTodo(todoId) {
         try {
             const fetchRes = await axios.post('/api/todo/singleTodo',
@@ -63,6 +40,39 @@ function SingleTodo() {
         }
     }
 
+    async function submitHandler(e) {
+        e.preventDefault();
+        console.log("submitHandler");
+    
+        const titleElValue = document.querySelector('#inputTitle').value;
+        const contentElValue = document.querySelector('#inputContent').value;
+        console.log("contentElValue :" ,contentElValue)
+    
+        try {
+            const patchRes = await axios.patch(
+                '/api/todo/update',
+                {
+                    id: Number(todoId),
+                    title: titleElValue,
+                    content: contentElValue
+                },
+                {
+                    headers: {
+                        'Authorization': authToken
+                    }
+                }
+            );
+            
+            if (patchRes) {
+                console.log("Update successful");
+                console.log("patchRes:", patchRes);
+            }
+        } catch (error) {
+            console.log("Error updating todo:", error);
+        }
+    }
+    
+
     useEffect(()=>{
         // console.log("INside useEffect ,",todoId);
         
@@ -80,15 +90,17 @@ function SingleTodo() {
             >Edit task</button>
         </div>
         <div>
-            <form className="flex flex-col hidden max-w-sm gap-4 p-4 mx-auto bg-gray-800 border rounded-lg"
+            <form className="flex flex-col max-w-sm gap-4 p-4 mx-auto bg-gray-800 border rounded-lg"
             id="editForm"
+            onSubmit={submitHandler}
             >
                 <label>
                     <span className="block mb-2">Title</span>
                     <input className="w-full p-1 font-medium text-black capitalize bg-gray-400 rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500 ring-2 "
                     type="text"
-                    value={data.title}
+                    defaultValue={data.title}
                     spellCheck
+                    id="inputTitle"
                     
                     />
                 </label>
@@ -96,7 +108,9 @@ function SingleTodo() {
                     <span className="block mb-2">Body</span>
                     <textarea rows={6}
                     className="w-full p-1 font-medium text-black capitalize bg-gray-400 rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500 ring-4 "
-                    value={data.content}
+                    defaultValue={data.content}
+                    id="inputContent"
+                    
                     />
                 </label>
                 <button type="submit" 
