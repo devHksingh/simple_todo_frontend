@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect,useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 function SingleTodo() {
     
@@ -10,7 +10,7 @@ function SingleTodo() {
     const token = localStorage.getItem("token")
     const authToken = `Bearer ${token}`
     console.log("TOKEN",authToken)
-
+    const navigate = useNavigate()
     
     
     async function fecthSingleTodo(todoId) {
@@ -47,6 +47,13 @@ function SingleTodo() {
         const titleElValue = document.querySelector('#inputTitle').value;
         const contentElValue = document.querySelector('#inputContent').value;
         console.log("contentElValue :" ,contentElValue)
+        const editTaskBtnEl = document.querySelector('#editTaskBtn')
+
+        // editTaskBtnEl.textContent="SAVING ...."
+        editTaskBtnEl.textContent = 'Processing'
+        editTaskBtnEl.disabled= true
+        editTaskBtnEl.style.opacity ='60%';
+        editTaskBtnEl.style.cursor ='not-allowed'
     
         try {
             const patchRes = await axios.patch(
@@ -66,10 +73,18 @@ function SingleTodo() {
             if (patchRes) {
                 console.log("Update successful");
                 console.log("patchRes:", patchRes);
+                navigate('/profile')
             }
         } catch (error) {
             console.log("Error updating todo:", error);
         }
+    }
+
+    function handelEditTodo(){
+        const todoContainerEl = document.querySelector("#taskContainer")
+        const editFormContainerEl = document.querySelector("#editFormContainer")
+        todoContainerEl.style.display="none";
+        editFormContainerEl.style.display="block"
     }
     
 
@@ -86,17 +101,19 @@ function SingleTodo() {
             <h2 className="mb-2 text-2xl font-bold tracking-tight text-orange-200 capitalize dark:text-orange-200">{data.title}</h2>
             <p className="mb-2 font-normal text-gray-400 text-pretty">{data.content}</p>
             <button
+            onClick={handelEditTodo}
+            id="editTaskBtn"
             className="px-3 py-2 mt-2 mb-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
             >Edit task</button>
         </div>
-        <div>
-            <form className="flex flex-col max-w-sm gap-4 p-4 mx-auto bg-gray-800 border rounded-lg"
+        <div className="hidden" id="editFormContainer">
+            <form className="flex flex-col max-w-sm gap-4 p-4 mx-auto mt-12 bg-gray-800 border rounded-lg"
             id="editForm"
             onSubmit={submitHandler}
             >
                 <label>
                     <span className="block mb-2">Title</span>
-                    <input className="w-full p-1 font-medium text-black capitalize bg-gray-400 rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500 ring-2 "
+                    <input className="w-full p-1 font-medium text-black bg-gray-400 rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500 ring-2 "
                     type="text"
                     defaultValue={data.title}
                     spellCheck
@@ -107,7 +124,7 @@ function SingleTodo() {
                 <label>
                     <span className="block mb-2">Body</span>
                     <textarea rows={6}
-                    className="w-full p-1 font-medium text-black capitalize bg-gray-400 rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500 ring-4 "
+                    className="w-full p-1 font-medium text-black bg-gray-400 rounded focus:outline-none focus:ring-blue-500 focus:border-blue-500 ring-4 "
                     defaultValue={data.content}
                     id="inputContent"
                     
