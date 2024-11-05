@@ -67,9 +67,9 @@ function Profile() {
 
     }, [])
 
-    function editHandler(id){
-        console.log(id)
-    }
+    // function editHandler(id){
+    //     console.log(id)
+    // }
     // async function removeHandler(id){
         
     //     console.log(authToken)
@@ -191,7 +191,7 @@ function Profile() {
                                 }}
                                 
                                  className="font-medium text-blue-600 hover:underline">View</Link>
-                                <a href="#" onClick={()=>editHandler(t.id)} className="font-medium text-blue-600 hover:underline ms-3">Edit</a>
+                                {/* <a href="#" onClick={()=>editHandler(t.id)} className="font-medium text-blue-600 hover:underline ms-3">Edit</a> */}
                                 <a href="#" onClick={()=>removeHandler(t.id)} className="font-medium text-red-600 hover:underline ms-3">Remove</a>
                             </td>
                         </tr>
