@@ -11,6 +11,7 @@ import ErrorPage from './ErrorPage.jsx'
 import Profile from './pages/Profile.jsx'
 import CreateNewTodo from './pages/CreateNewTodo.jsx'
 import SingleTodo from './pages/singleTodo.jsx'
+import About from './pages/About.jsx'
 
 const  router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const  router = createBrowserRouter(
       <Route path='profile' element={<Profile/>}/>
       <Route path='addTodo' element={<CreateNewTodo/>}/>
       <Route path='singleTodo/:todoId' element={<SingleTodo/>}/>
+      <Route path='/about' element={<About/>}/>
     </Route>
   )
 )
