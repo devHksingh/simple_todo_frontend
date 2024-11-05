@@ -56,6 +56,11 @@ function SignUp() {
     // Define the async function inside to perform the API call
     async function signUpPostRequest() {
       if(!invalidUserInput){
+        const signUpBtnEl = document.querySelector('#signUpBtn')
+        signUpBtnEl.textContent = 'Processing'
+        signUpBtnEl.disabled= true
+        signUpBtnEl.style.opacity ='60%';
+        signUpBtnEl.style.cursor ='not-allowed'
         try {
           console.log("Inside API call");
   
@@ -82,11 +87,17 @@ function SignUp() {
             // console.log(error.response.data.message);
             setLoginErr(error.response.data.message)
             console.log(loginErr);
-            
+            // window.location.reload();
+            // navigate('/signUp')
+            signUpBtnEl.textContent = 'SignUp'
+            signUpBtnEl.disabled= false
+            signUpBtnEl.style.opacity ='100%';
+            signUpBtnEl.style.cursor ='pointer'
             
           }
         }finally{
           signUpFormEl.reset()
+          signUpBtnEl.disabled= false
         }
       }
     }
@@ -174,6 +185,7 @@ function SignUp() {
             </div>
             <button
               type="submit"
+              id='signUpBtn'
               className={` mt-4 mb-2 py-1 rounded-xl font-semibold text-md bg-orange-400 hover:bg-orange-600 border-none shadow-md w-full`}
             >
               SignUp
