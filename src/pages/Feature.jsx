@@ -6,7 +6,7 @@ import { FaLock } from "react-icons/fa6";
 const Feature = () => {
   return (
     <div className="container mx-auto">
-        <div className="flex flex-col justify-center gap-8 mt-12 lg:mt-20">
+        <div className="flex flex-col justify-center gap-8 p-4 mt-12 lg:mt-20">
             <h2 className="text-4xl font-bold tracking-tight">Features</h2>
             <p className="text-xl opacity-60">Explore the powerful tools that make YourTodo the ultimate productivity solution:</p>
             <div className="flex flex-col gap-6 md:grid md:grid-cols-2">
