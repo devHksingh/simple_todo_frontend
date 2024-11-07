@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // server:{
-  //   proxy:{
-  //     '/api':'https://simple-todo-backend-cntw.onrender.com'
-  //   }
-  // },
+  server:{
+    proxy:{
+      '/api':'https://simple-todo-backend-cntw.onrender.com'
+    }
+  },
   plugins: [react()],
 })
