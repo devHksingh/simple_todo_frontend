@@ -2,6 +2,7 @@ import axios from 'axios';
 import signUpImg from '../assets/Sign up.webp';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { config } from "../config/config"
 
 function SignUp() {
   const [loginErr,setLoginErr] = useState("")
@@ -64,7 +65,7 @@ function SignUp() {
         try {
           console.log("Inside API call");
   
-          const res = await axios.post('/api/users/register', {
+          const res = await axios.post(`${config.backendDomain}/api/users/register`, {
             email: emailElValue,
             userName: userNameElValue,
             name: nameElValue,

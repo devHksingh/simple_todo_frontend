@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { config } from "../config/config"
 
 function CreateNewTodo() {
     const [todoErr,setTodoErr] = useState("")
@@ -28,7 +29,7 @@ function CreateNewTodo() {
               try {
                 console.log("Inside API call");
         
-                const res = await axios.post('/api/todo/createTodo', {
+                const res = await axios.post(`${config.backendDomain}/api/todo/createTodo`, {
                     title:titleElValue,
                     content:todoContentElValue,
                 },{

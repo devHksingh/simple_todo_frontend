@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import profileImg from '../assets/vecteezy_a-silhouette-of-a-man-in-a-suit-and-tie_49579807.png'
-
+import { config } from "../config/config"
 function Profile() {
    
     const navigate = useNavigate()
@@ -32,7 +32,7 @@ function Profile() {
             const token = localStorage.getItem("token")
             if(token){
                 try {
-                    const response = await axios.get('/api/users/userProfile',{
+                    const response = await axios.get(`${config.backendDomain}/api/users/userProfile`,{
                         headers:{
                             'Authorization':`Bearer ${token}`
                         }
@@ -93,7 +93,7 @@ function Profile() {
         console.log("removeHandler ID:", id);
     
         try {
-            const axiosRes = await axios.delete('/api/todo/delete', {
+            const axiosRes = await axios.delete(`${config.backendDomain}/api/todo/delete`, {
                 headers: {
                     'Authorization': authToken
                 },

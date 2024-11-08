@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom"
 import LoginImg from "../assets/Computer login-rafiki.webp"
 import axios from "axios"
+import { config } from "../config/config"
 
 
 // async function  apiCall(){
@@ -71,8 +72,9 @@ function Login() {
     
     async function postReq() {
       try {
-        
-        const res = await axios.post('/api/users/login',{
+        console.log("config.backendDomain :",config.backendDomain)
+        console.log("config.backendDomain :",import.meta.env.BACKEND_URL)
+        const res = await axios.post(`${config.backendDomain}/api/users/login`,{
           email:emailElValue,
           password:passwordElValue
         })
@@ -84,8 +86,8 @@ function Login() {
         }
       } catch (error) {
         console.log(error);
-        console.log(error.message);
-        console.log(error.status);
+        // console.log(error.message);
+        // console.log(error.status);
         loginErrorEl.textContent= 'Login error!. Check your credential.Try it again!'
         
       }finally{

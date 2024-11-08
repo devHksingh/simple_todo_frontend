@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect,useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { config } from "../config/config"
 
 function SingleTodo() {
     
@@ -11,11 +12,11 @@ function SingleTodo() {
     const authToken = `Bearer ${token}`
     console.log("TOKEN",authToken)
     const navigate = useNavigate()
-    
+
     
     async function fecthSingleTodo(todoId) {
         try {
-            const fetchRes = await axios.post('/api/todo/singleTodo',
+            const fetchRes = await axios.post(`${config.backendDomain}/api/todo/singleTodo`,
                 {
                     todoId:todoId
                 },
@@ -57,7 +58,7 @@ function SingleTodo() {
     
         try {
             const patchRes = await axios.patch(
-                '/api/todo/update',
+                `${config.backendDomain}/api/todo/update`,
                 {
                     id: Number(todoId),
                     title: titleElValue,
