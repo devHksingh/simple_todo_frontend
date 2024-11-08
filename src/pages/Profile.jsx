@@ -26,41 +26,41 @@ function Profile() {
         
         return truncated 
     }
+    async function apiCall(){
+        const token = localStorage.getItem("token")
+        if(token){
+            try {
+                const response = await axios.get(`${config.backendDomain}/api/users/userProfile`,{
+                    headers:{
+                        'Authorization':`Bearer ${token}`
+                    }
+                })
+                if(response){
+                    // console.log("apiData" ,response);
+                //  setData(response.data)
+                //  console.log(data);
+                //  console.log("apiData",response);
+                //  console.log("RES .DATA" ,response.data);
+                //  console.log("RES .DATA PROFILE" ,response.data.profile);
+                 setData(response.data.profile)
+                //  console.log("DATA #####" ,data);
+                 }
+                 setTodo(response.data.profile.todo)
+                //  console.log("res todo" ,response.data.profile.todo);
+
+                
+                 
+                 
+                 
+            } catch (error) {
+                console.log(error);
+                
+            }
+        }
+        
+    }
     
     useEffect(()=>{
-        async function apiCall(){
-            const token = localStorage.getItem("token")
-            if(token){
-                try {
-                    const response = await axios.get(`${config.backendDomain}/api/users/userProfile`,{
-                        headers:{
-                            'Authorization':`Bearer ${token}`
-                        }
-                    })
-                    if(response){
-                        // console.log("apiData" ,response);
-                    //  setData(response.data)
-                    //  console.log(data);
-                    //  console.log("apiData",response);
-                    //  console.log("RES .DATA" ,response.data);
-                    //  console.log("RES .DATA PROFILE" ,response.data.profile);
-                     setData(response.data.profile)
-                    //  console.log("DATA #####" ,data);
-                     }
-                     setTodo(response.data.profile.todo)
-                    //  console.log("res todo" ,response.data.profile.todo);
-
-                    
-                     
-                     
-                     
-                } catch (error) {
-                    console.log(error);
-                    
-                }
-            }
-            
-        }
        
         apiCall()
         
@@ -104,7 +104,8 @@ function Profile() {
             
             if (axiosRes) {
                 console.log("Delete response:", axiosRes);
-                window.location.reload();
+                // window.location.reload();
+                apiCall()
             }
         } catch (error) {
             console.error("Error deleting todo:", error);
@@ -192,7 +193,7 @@ function Profile() {
                                 
                                  className="font-medium text-blue-600 hover:underline">View</Link>
                                 {/* <a href="#" onClick={()=>editHandler(t.id)} className="font-medium text-blue-600 hover:underline ms-3">Edit</a> */}
-                                <a href="#" onClick={()=>removeHandler(t.id)} className="font-medium text-red-600 hover:underline ms-3">Remove</a>
+                                <button  onClick={()=>removeHandler(t.id)} className="font-medium text-red-600 hover:underline ms-3">Remove</button>
                             </td>
                         </tr>
                        
