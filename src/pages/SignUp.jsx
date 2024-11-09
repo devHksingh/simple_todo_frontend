@@ -200,7 +200,7 @@ function SignUp() {
       // </div>
     // </div>
     <div className='container mx-auto '>
-        <div className="grid items-center justify-center min-h-screen grid-cols-1 gap-2 p-2 md:grid-cols-2 md:gap-4 md:p-4">
+        <div className="grid items-center justify-center min-h-screen grid-cols-1 gap-2 p-2 mt-4 md:grid-cols-6 md:gap-4 md:p-4 md:mt-0">
             <div className="col-span-4 max-w-[96%] flex flex-col border ml-2 p-4 rounded-lg">
               <div>
                 <h2 className="font-mono text-xl text-center">Logo</h2>
@@ -284,7 +284,7 @@ function SignUp() {
                 <p className='font-medium text-red-500 text-md'>{loginErr?`${loginErr}`:``}</p>
               </form>
             </div>
-            <div className="max-w-full col-span-2 mb-2 ml-2 border rounded-md md:visible bg-slate-500">
+            <div className="max-w-full col-span-2 mb-2 ml-2 rounded-md md:visible bg-slate-500">
               <img src={signUpImg} alt="signUpImg"  className='p-2 mx-auto ml-2'/>
             </div>
           </div>
