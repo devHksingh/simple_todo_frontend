@@ -1,14 +1,18 @@
 import { useState } from "react"
-import { NavLink,Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { FiMenu } from "react-icons/fi";
+import { RxCross2 } from "react-icons/rx";
 
 function Navbar() {
-    const tabs = ["Home","About","Feature"]
+    // const tabs = ["Home","About","Feature"]
     
     const btnsNavigation = [
         {text:"SignIn",href:'signIn'},
         {text:"SignUp",href:'signUp'}
     ]
+    const menuOpenBtnEl = document.querySelector('#menu-open-btn')
+    const menuCloseBtnEl = document.querySelector('#menu-close-btn')
+    const mobDivEl = document.querySelector('#mob-nav-container')
     const [isdarkMode,setIsDarkMode] = useState(true)
     function toggleDark(){
         setIsDarkMode(!isdarkMode)
@@ -34,15 +38,34 @@ function Navbar() {
         }
         
     }
+    
+    function handleNavBtn(){
+        mobDivEl.style.display='none'
+        menuOpenBtnEl.style.display='block'
+        menuCloseBtnEl.style.display='none'
+    }
+    
+    function handleOpenMenu(){
+        menuOpenBtnEl.style.display='none'
+        menuCloseBtnEl.style.display='block'
+        mobDivEl.style.display='block'
+        
+    }
+    function handleCloseMenu(){
+        menuOpenBtnEl.style.display='block'
+        menuCloseBtnEl.style.display='none'
+        mobDivEl.style.display='none'
+        
+    }
   return ( 
     <header className="w-full bg-slate-800">
         <div className="container w-full mx-auto">
-            <nav className="flex justify-around w-full p-4 text-white">
+            <nav className="flex justify-center w-full p-4 text-white md:justify-between">
                 <div className="self-center">
-                    <h1 className="font-semibold capitalize text-pretty">lOGO</h1>
+                    <h1 className="font-semibold capitalize text-pretty"><Link to=''>lOGO</Link></h1>
                 </div>
                 {/* menu */}
-                <div className="self-center invisible md:visible">
+                {/* <div className="self-center invisible md:visible">
                     <ul className="flex justify-between gap-1 align-middle md:gap-8 ">
                         {tabs.map((tab)=>(
                             <DisplayMenuLink
@@ -51,7 +74,7 @@ function Navbar() {
                             />
                         ))}
                     </ul>
-                </div>
+                </div> */}
                 {/* buttons */}
                 {/* <div className="self-center space-x-4">
                     {btns.map((btn)=>(
@@ -61,8 +84,8 @@ function Navbar() {
                         />
                     ))}
                 </div> */}
-                <div className="flex gap-2">
-                    <div className="self-center space-x-4">
+                <div className="flex md:gap-2">
+                    <div className="self-center invisible space-x-4 md:visible">
                         {btnsNavigation.map((btn)=>(
                             <Link to={`${btn.href}`} key={btn.text} className="px-2 py-[0.245rem] font-semibold text-black bg-orange-400 rounded-lg hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 align-middle ">{btn.text}</Link>
                         ))}
@@ -84,8 +107,23 @@ function Navbar() {
                             </label>
                             
                     </div>
-                    <div className="self-center">
-                        <a href="" className=" text-xl hover:text-[#ffbb52] md:hidden"><FiMenu /></a>
+                    <div className="self-center md:hidden">
+                        <button className=" text-xl hover:text-[#ffbb52] md:hidden" id="menu-open-btn" onClick={handleOpenMenu}><FiMenu /></button>
+                        <button className="hidden text-xl hover:text-[#ffbb52] md:hidden" id="menu-close-btn"
+                        onClick={handleCloseMenu}><RxCross2 /></button>
+                        
+                    </div>
+                    
+                </div>
+
+                <div className="absolute right-0 hidden w-1/2 p-4 mt-12 text-center rounded-lg bg-slate-600 h-1/4 opacity-90" id="mob-nav-container">
+                    <div className="flex flex-col justify-around gap-6 text-lg">
+                        {btnsNavigation.map((btn)=>(
+                            <Link 
+                            className="px-2 py-[0.245rem] font-semibold text-black bg-orange-400 rounded-lg hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 align-middle mt-4"
+                            onClick={handleNavBtn}
+                            key={btn.text} to={btn.href}>{btn.text}</Link>
+                        ))}
                     </div>
                 </div>
                 
@@ -102,34 +140,34 @@ function Navbar() {
 }
 
 // eslint-disable-next-line react/prop-types
-function DisplayMenuLink({text}){
+// function DisplayMenuLink({text}){
 
-    if(text === "Home"){
-        return (
-            <li>
-                <NavLink to={``}
-            className={({isActive})=>`text-gray-200 font-semibold duration-200 
-               ${isActive?`text-orange-400 border-b border-sky-600`:``}
-                hover:text-gray-400 hover:border-b hover:border-orange-400 hover:py-1`}
-            >{text}</NavLink>
-            </li>
-        )
-    }else{
-        return (
-            <NavLink to={`/${text}`}
-            className={({isActive})=>`text-gray-200 font-semibold duration-200 
-               ${isActive?`text-orange-400 border-b border-sky-600`:``}
-                hover:text-gray-400 hover:border-b hover:border-orange-400 hover:py-1`}
-            >{text}</NavLink>
-        )
-    }
+//     if(text === "Home"){
+//         return (
+//             <li>
+//                 <NavLink to={``}
+//             className={({isActive})=>`text-gray-200 font-semibold duration-200 
+//                ${isActive?`text-orange-400 border-b border-sky-600`:``}
+//                 hover:text-gray-400 hover:border-b hover:border-orange-400 hover:py-1`}
+//             >{text}</NavLink>
+//             </li>
+//         )
+//     }else{
+//         return (
+//             <NavLink to={`/${text}`}
+//             className={({isActive})=>`text-gray-200 font-semibold duration-200 
+//                ${isActive?`text-orange-400 border-b border-sky-600`:``}
+//                 hover:text-gray-400 hover:border-b hover:border-orange-400 hover:py-1`}
+//             >{text}</NavLink>
+//         )
+//     }
 
-    // return (
-    //     <li>
+//     // return (
+//     //     <li>
             
-    //     </li>
-    // )
-}
+//     //     </li>
+//     // )
+// }
 
 /*
 <NavLink to={`/${text}`}
