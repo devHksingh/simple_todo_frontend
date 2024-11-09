@@ -109,95 +109,185 @@ function SignUp() {
   }
 
   return (
-    <div className="container flex items-center justify-center min-h-screen mx-auto">
-      <div className="grid items-center justify-center grid-cols-6 gap-2">
-        <div className="col-span-4 max-w-[100%] flex flex-col border ml-2 p-4 rounded-lg">
-          <div>
-            <h2 className="font-mono text-xl text-center">Logo</h2>
-            <h3 className="m-2 text-lg font-medium text-center text-orange-600">Sign up</h3>
-            <p className="text-sm text-center text-slate-500">
-              Sign Up Today and Start Getting Things Done!
-            </p>
-          </div>
+    // <div className="container flex items-center justify-center min-h-screen mx-auto">
+      // <div className="grid items-center justify-center grid-cols-6 gap-2">
+      //   <div className="col-span-4 max-w-[100%] flex flex-col border ml-2 p-4 rounded-lg">
+      //     <div>
+      //       <h2 className="font-mono text-xl text-center">Logo</h2>
+      //       <h3 className="m-2 text-lg font-medium text-center text-orange-600">Sign up</h3>
+      //       <p className="text-sm text-center text-slate-500">
+      //         Sign Up Today and Start Getting Things Done!
+      //       </p>
+      //     </div>
           
-          <form
-            className="p-4 pl-4 pr-4 mt-4 rounded-md shadow-lg bg-slate-200"
-            onSubmit={signUpFormHandeler}
-            id='signUp-form'
-          >
-            <div>
-              <label>
-                <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
-                  Email
-                </span>
-                <input
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="Enter your email Id"
-                  id="email-input"
-                  className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
-                />
-                <span className="hidden mt-1 text-sm text-red-500 peer-invalid:block" id="emailError">Enter Valid email id</span>
-              </label>
+      //     <form
+      //       className="p-4 pl-4 pr-4 mt-4 rounded-md shadow-lg bg-slate-200"
+      //       onSubmit={signUpFormHandeler}
+      //       id='signUp-form'
+      //     >
+      //       <div>
+      //         <label>
+      //           <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
+      //             Email
+      //           </span>
+      //           <input
+      //             type="email"
+      //             required
+      //             autoComplete="email"
+      //             placeholder="Enter your email Id"
+      //             id="email-input"
+      //             className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
+      //           />
+      //           <span className="hidden mt-1 text-sm text-red-500 peer-invalid:block" id="emailError">Enter Valid email id</span>
+      //         </label>
+      //       </div>
+      //       <div className="grid grid-cols-2 gap-2">
+      //         <label className="inline-block">
+      //           <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
+      //             Name
+      //           </span>
+      //           <input
+      //             type="text"
+      //             required
+      //             placeholder="Enter your name"
+      //             id="name-input"
+      //             className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
+      //           />
+      //           <span className="hidden mt-1 text-sm text-red-500 " id="nameError">Full name is required</span>
+      //         </label>
+      //         <label className="inline-block">
+      //           <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
+      //             UserName
+      //           </span>
+      //           <input
+      //             type="text"
+      //             required
+      //             placeholder="Enter your user name"
+      //             id="userName-input"
+      //             className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
+      //           />
+      //           <span className="hidden mt-1 text-sm text-red-500" id="userNameError">User name is required</span>
+      //         </label>
+      //       </div>
+      //       <div>
+      //         <label>
+      //           <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
+      //             Password
+      //           </span>
+      //           <input
+      //             type="password"
+      //             required
+      //             id="password-input"
+      //             placeholder="Enter four-digit password"
+      //             className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
+      //           />
+      //           <span className="hidden mt-1 text-sm text-red-500 " id="passwordError">Password is required </span>
+      //         </label>
+      //       </div>
+      //       <button
+      //         type="submit"
+      //         id='signUpBtn'
+      //         className={` mt-4 mb-2 py-1 rounded-xl font-semibold text-md bg-orange-400 hover:bg-orange-600 border-none shadow-md w-full`}
+      //       >
+      //         SignUp
+      //       </button>
+      //       <p className='font-medium text-red-500 text-md'>{loginErr?`${loginErr}`:``}</p>
+      //     </form>
+      //   </div>
+      //   <div className="invisible max-w-screen-lg col-span-2 p-1 mt-2 mb-2 rounded-md md:visible bg-slate-500">
+      //     <img src={signUpImg} alt="signUpImg" />
+      //   </div>
+      // </div>
+    // </div>
+    <div className='container mx-auto '>
+        <div className="grid items-center justify-center min-h-screen grid-cols-1 gap-2 p-2 md:grid-cols-2 md:gap-4 md:p-4">
+            <div className="col-span-4 max-w-[96%] flex flex-col border ml-2 p-4 rounded-lg">
+              <div>
+                <h2 className="font-mono text-xl text-center">Logo</h2>
+                <h3 className="m-2 text-lg font-medium text-center text-orange-600">Sign up</h3>
+                <p className="text-sm text-center text-slate-500">
+                  Sign Up Today and Start Getting Things Done!
+                </p>
+              </div>
+              
+              <form
+                className="p-4 pl-4 pr-4 mt-4 rounded-md shadow-lg bg-slate-200"
+                onSubmit={signUpFormHandeler}
+                id='signUp-form'
+              >
+                <div>
+                  <label>
+                    <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
+                      Email
+                    </span>
+                    <input
+                      type="email"
+                      required
+                      autoComplete="email"
+                      placeholder="Enter your email Id"
+                      id="email-input"
+                      className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
+                    />
+                    <span className="hidden mt-1 text-sm text-red-500 peer-invalid:block" id="emailError">Enter Valid email id</span>
+                  </label>
+                </div>
+                <div className="grid gap-2 md:grid-cols-2">
+                  <label className="inline-block">
+                    <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
+                      Name
+                    </span>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Enter your name"
+                      id="name-input"
+                      className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
+                    />
+                    <span className="hidden mt-1 text-sm text-red-500 " id="nameError">Full name is required</span>
+                  </label>
+                  <label className="inline-block">
+                    <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
+                      UserName
+                    </span>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Enter your user name"
+                      id="userName-input"
+                      className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
+                    />
+                    <span className="hidden mt-1 text-sm text-red-500" id="userNameError">User name is required</span>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
+                      Password
+                    </span>
+                    <input
+                      type="password"
+                      required
+                      id="password-input"
+                      placeholder="Enter four-digit password"
+                      className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
+                    />
+                    <span className="hidden mt-1 text-sm text-red-500 " id="passwordError">Password is required </span>
+                  </label>
+                </div>
+                <button
+                  type="submit"
+                  id='signUpBtn'
+                  className={` mt-4 mb-2 py-1 rounded-xl font-semibold text-md bg-orange-400 hover:bg-orange-600 border-none shadow-md w-full`}
+                >
+                  SignUp
+                </button>
+                <p className='font-medium text-red-500 text-md'>{loginErr?`${loginErr}`:``}</p>
+              </form>
             </div>
-            <div className="grid grid-cols-2 gap-2">
-              <label className="inline-block">
-                <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
-                  Name
-                </span>
-                <input
-                  type="text"
-                  required
-                  placeholder="Enter your name"
-                  id="name-input"
-                  className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
-                />
-                <span className="hidden mt-1 text-sm text-red-500 " id="nameError">Full name is required</span>
-              </label>
-              <label className="inline-block">
-                <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
-                  UserName
-                </span>
-                <input
-                  type="text"
-                  required
-                  placeholder="Enter your user name"
-                  id="userName-input"
-                  className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
-                />
-                <span className="hidden mt-1 text-sm text-red-500" id="userNameError">User name is required</span>
-              </label>
+            <div className="max-w-full col-span-2 mb-2 ml-2 border rounded-md md:visible bg-slate-500">
+              <img src={signUpImg} alt="signUpImg"  className='p-2 mx-auto ml-2'/>
             </div>
-            <div>
-              <label>
-                <span className="block mb-1 text-gray-400 text:md after:content-['*'] after:ml-0.5 after:text-red-500">
-                  Password
-                </span>
-                <input
-                  type="password"
-                  required
-                  id="password-input"
-                  placeholder="Enter four-digit password"
-                  className="block w-full p-1 font-medium text-black border rounded-lg peer focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500 invalid:text-red-500 invalid:focus:border-red-500 invalid:focus:ring-red-500 placeholder:text-gray-400"
-                />
-                <span className="hidden mt-1 text-sm text-red-500 " id="passwordError">Password is required </span>
-              </label>
-            </div>
-            <button
-              type="submit"
-              id='signUpBtn'
-              className={` mt-4 mb-2 py-1 rounded-xl font-semibold text-md bg-orange-400 hover:bg-orange-600 border-none shadow-md w-full`}
-            >
-              SignUp
-            </button>
-            <p className='font-medium text-red-500 text-md'>{loginErr?`${loginErr}`:``}</p>
-          </form>
-        </div>
-        <div className="invisible max-w-screen-lg col-span-2 p-1 mt-2 mb-2 rounded-md md:visible bg-slate-500">
-          <img src={signUpImg} alt="signUpImg" />
-        </div>
-      </div>
+          </div>
     </div>
   );
 }
