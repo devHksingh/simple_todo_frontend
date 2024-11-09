@@ -22,7 +22,7 @@ function Home() {
               </div>
             </div> */}
 
-            <div className='flex items-center justify-center min-h-screen p-4 mx-auto mt-4 border md:p-1'>
+            <div className='flex items-center justify-center min-h-screen p-4 mx-auto mt-4 md:p-1'>
               <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
                 <div className='order-2 '>
                   <h2 className='text-4xl font-bold md:text-5xl leading-tighter'>Stay Focused. Stay Organized. Accomplish More.</h2>
