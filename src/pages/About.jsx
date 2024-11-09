@@ -4,7 +4,7 @@ import office2 from '../assets/office-long-2.webp'
 const About = () => {
   return (
     <div className="container mx-auto">
-        <div className="flex flex-col items-center max-w-screen-lg gap-16 mx-auto mt-8 md:grid-cols-2 lg:py-16 lg:px-6 md:grid">
+        <div className="flex flex-col items-center max-w-screen-lg gap-16 p-4 mx-auto mt-8 md:grid-cols-2 lg:py-16 lg:px-6 md:grid md:p-1">
             <div className="font-light sm:text-lg">
                 <h2
                 className="mb-4 text-4xl font-extrabold tracking-tight "
