@@ -102,7 +102,7 @@ function Navbar() {
                                 className="absolute inset-x-0 left-0 size-4 m-1 bg-gray-600 rounded-full ring-[4px] ring-inset ring-white transition-all peer-checked:start-8 peer-checked:w-1 peer-checked:bg-white peer-checked:ring-[#ffbb52] duration-500"
                                 ></span>
                                 
-                                <span className=" self-center font-medium  text-slate-200 peer-[:checked]:text-[#ffbb52] ease-in-out duration-500">{!isdarkMode? `Light`:`Dark`}</span>
+                                <span className=" self-center font-medium  text-slate-200 peer-[:checked]:text-[#ffbb52] ease-in-out duration-500">{!isdarkMode? `Dark`:`Light`}</span>
                                 
                             </label>
                             
