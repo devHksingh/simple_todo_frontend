@@ -65,7 +65,7 @@ function CreateNewTodo() {
     }
   return (
     <div
-    className="container content-center mx-auto  bg-[#17120f]  items-center min-h-[100%] p-4 rounded-lg mt-16 mb-4 max-w-4xl shadow-lg bg-gradient-to-br from-[#333333] via-[#191919] to-[#000000] text-white"
+    className="container content-center mx-auto  bg-[#17120f]  items-center min-h-screen p-4 rounded-lg mt-16 mb-4 max-w-4xl shadow-lg bg-gradient-to-br from-[#333333] via-[#191919] to-[#000000] text-white"
     >
         <form id="todoForm" className="flex flex-col max-w-full gap-4 p-4 border rounded-lg shadow justify-evenly" onSubmit={createTodoHandeler}>
             <label className="space-y-2">
