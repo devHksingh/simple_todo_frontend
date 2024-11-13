@@ -17,7 +17,7 @@ function CreateNewTodo() {
         let invalidUserInput = false
 
         if(titleElValue.trim() === ""){
-            console.log("Enter title ",titleElValue);
+            // console.log("Enter title ",titleElValue);
             titleErrorEl.style.display="block"
             
             titleErrorEl.textContent ="Enter Valid title for todo"
@@ -27,7 +27,7 @@ function CreateNewTodo() {
             if(!invalidUserInput){
                 const userToken = `Bearer ${localStorage.getItem('token')}` 
               try {
-                console.log("Inside API call");
+                // console.log("Inside API call");
         
                 const res = await axios.post(`${config.backendDomain}/api/todo/createTodo`, {
                     title:titleElValue,
@@ -39,20 +39,20 @@ function CreateNewTodo() {
                 });
         
                 if (res) {
-                  console.log('todo response: ', res);
+                  // console.log('todo response: ', res);
                   
                   
                   navigate('/profile')
                 }
                 
               } catch (error) {
-                console.log("Error in API call:", error);
+                // console.log("Error in API call:", error);
                 if (error.status === 400){
                   // console.log("#######################");
                   
                   // console.log(error.response.data.message);
                   setTodoErr(error.response.data.message)
-                  console.log(todoErr);
+                  // console.log(todoErr);
                   
                   
                 }

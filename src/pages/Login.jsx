@@ -60,7 +60,7 @@ function Login() {
     // console.log(emailElValue);
     
     if(emailElValue === "" || !emailElValue.includes('@') || !emailElValue.includes('.com')){
-      console.log("Enter Valid email id",emailElValue);
+      // console.log("Enter Valid email id",emailElValue);
       emailErrorEl.style.display="block"
       
       emailErrorEl.textContent ="Enter Valid email id include @ and .com"
@@ -72,20 +72,20 @@ function Login() {
     
     async function postReq() {
       try {
-        console.log("config.backendDomain :",config.backendDomain)
-        console.log("config.backendDomain :",import.meta.env.BACKEND_URL)
+        // console.log("config.backendDomain :",config.backendDomain)
+        // console.log("config.backendDomain :",import.meta.env.BACKEND_URL)
         const res = await axios.post(`${config.backendDomain}/api/users/login`,{
           email:emailElValue,
           password:passwordElValue
         })
         if(res){
           // console.log(res);
-          console.log(res.data);
+          // console.log(res.data);
           localStorage.setItem("token",res.data.token)
           navigate('/profile')
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         // console.log(error.message);
         // console.log(error.status);
         loginErrorEl.textContent= 'Login error!. Check your credential.Try it again!'
@@ -95,7 +95,7 @@ function Login() {
         // loaderEl.style.display='none'
         formBtnEl.disabled= false
         formBtnEl.style.opacity ='100%';
-        console.log('formBtnEl',formBtnEl);
+        // console.log('formBtnEl',formBtnEl);
         formBtnEl.style.cursor ='pointer'
         document.querySelector('#loginForm').reset()
       }

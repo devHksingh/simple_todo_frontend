@@ -11,7 +11,7 @@ function SignUp() {
 
   function signUpFormHandeler(e) {
     e.preventDefault(); // Prevent default form submission
-    console.log("Form Submission Started");
+    // console.log("Form Submission Started");
 
     // Get input values within the function
     const emailElValue = document.querySelector('#email-input').value;
@@ -24,7 +24,7 @@ function SignUp() {
     const userNameErrorEl= document.querySelector('#userNameError')
     const passwordErrorEl= document.querySelector('#passwordError')
 
-    console.log("userNameElValue", userNameElValue);
+    // console.log("userNameElValue", userNameElValue);
     let invalidUserInput = false
 
     // Check if all required inputs have values
@@ -33,7 +33,7 @@ function SignUp() {
     //   return;
     // }
     if(emailElValue.trim() === "" || !emailElValue.includes('@') || !emailElValue.includes('.com')){
-      console.log("Enter Valid email id",emailElValue);
+      // console.log("Enter Valid email id",emailElValue);
       emailErrorEl.style.display="block"
       
       emailErrorEl.textContent ="Enter Valid email id include @ and .com"
@@ -63,7 +63,7 @@ function SignUp() {
         signUpBtnEl.style.opacity ='60%';
         signUpBtnEl.style.cursor ='not-allowed'
         try {
-          console.log("Inside API call");
+          // console.log("Inside API call");
   
           const res = await axios.post(`${config.backendDomain}/api/users/register`, {
             email: emailElValue,
@@ -73,21 +73,21 @@ function SignUp() {
           });
   
           if (res) {
-            console.log('SIGNUP RESPONSE: ', res);
+            // console.log('SIGNUP RESPONSE: ', res);
             const token = res.data.token
-            console.log(res.data.token);
+            // console.log(res.data.token);
             localStorage.setItem('token',token)
             navigate('/profile')
           }
           
         } catch (error) {
-          console.log("Error in API call:", error);
+          // console.log("Error in API call:", error);
           if (error.status === 400){
             // console.log("#######################");
             
             // console.log(error.response.data.message);
             setLoginErr(error.response.data.message)
-            console.log(loginErr);
+            // console.log(loginErr);
             // window.location.reload();
             // navigate('/signUp')
             signUpBtnEl.textContent = 'SignUp'
@@ -104,7 +104,7 @@ function SignUp() {
     }
 
     // Call the async function
-    console.log("OUTSIDE api call");
+    // console.log("OUTSIDE api call");
     signUpPostRequest();
   }
 

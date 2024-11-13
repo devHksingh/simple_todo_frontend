@@ -7,10 +7,10 @@ function SingleTodo() {
     
     const [data,setData] = useState({})
     const {todoId} = useParams()
-    console.log(todoId)
+    // console.log(todoId)
     const token = localStorage.getItem("token")
     const authToken = `Bearer ${token}`
-    console.log("TOKEN",authToken)
+    // console.log("TOKEN",authToken)
     const navigate = useNavigate()
 
     
@@ -30,24 +30,24 @@ function SingleTodo() {
                 // console.log("fetchRes :",fetchRes);
                 // console.log("fetchRes :",fetchRes.data.singleTodo);
                 setData(fetchRes.data.singleTodo)
-                console.log("###############################")
-                console.log(typeof(data));
-                console.log((data));
+                // console.log("###############################")
+                // console.log(typeof(data));
+                // console.log((data));
                 
             }
         } catch (error) {
-            console.log("errror :",error);
+            // console.log("errror :",error);
             
         }
     }
 
     async function submitHandler(e) {
         e.preventDefault();
-        console.log("submitHandler");
+        // console.log("submitHandler");
     
         const titleElValue = document.querySelector('#inputTitle').value;
         const contentElValue = document.querySelector('#inputContent').value;
-        console.log("contentElValue :" ,contentElValue)
+        // console.log("contentElValue :" ,contentElValue)
         const editTaskBtnEl = document.querySelector('#editTaskBtn')
 
         // editTaskBtnEl.textContent="SAVING ...."
@@ -72,12 +72,12 @@ function SingleTodo() {
             );
             
             if (patchRes) {
-                console.log("Update successful");
-                console.log("patchRes:", patchRes);
+                // console.log("Update successful");
+                // console.log("patchRes:", patchRes);
                 navigate('/profile')
             }
         } catch (error) {
-            console.log("Error updating todo:", error);
+            // console.log("Error updating todo:", error);
         }
     }
 

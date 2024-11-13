@@ -10,7 +10,7 @@ function Profile() {
     const [todo,setTodo] = useState([])
     const token = localStorage.getItem("token")
     const authToken = `Bearer ${token}`
-    console.log("#######TOKEN############## :",authToken)
+    // console.log("#######TOKEN############## :",authToken)
 
     function  truncateString(inputStr,wordLimit){
         const words = inputStr.split(' ');
@@ -53,7 +53,7 @@ function Profile() {
                  
                  
             } catch (error) {
-                console.log(error);
+                // console.log(error);
                 
             }
         }
@@ -89,8 +89,8 @@ function Profile() {
     //     }
     // }
     async function removeHandler(id) {
-        console.log("AuthToken:", authToken);
-        console.log("removeHandler ID:", id);
+        // console.log("AuthToken:", authToken);
+        // console.log("removeHandler ID:", id);
     
         try {
             const axiosRes = await axios.delete(`${config.backendDomain}/api/todo/delete`, {
@@ -103,7 +103,7 @@ function Profile() {
             });
             
             if (axiosRes) {
-                console.log("Delete response:", axiosRes);
+                // console.log("Delete response:", axiosRes);
                 // window.location.reload();
                 apiCall()
             }
