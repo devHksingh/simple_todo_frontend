@@ -95,7 +95,7 @@ function SingleTodo() {
         fecthSingleTodo(todoId)
     },[ todoId ])
   return (
-    <div className="container mx-auto ">
+    <div className="container min-h-screen mx-auto">
         <div className="max-w-sm p-2 px-4 pb-4 mx-auto mt-12 bg-gray-800 border border-gray-700 rounded-lg shadow-md"
         id="taskContainer"
         >
