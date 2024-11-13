@@ -13,7 +13,7 @@ function Navbar() {
     const menuOpenBtnEl = document.querySelector('#menu-open-btn')
     const menuCloseBtnEl = document.querySelector('#menu-close-btn')
     const mobDivEl = document.querySelector('#mob-nav-container')
-    const [isdarkMode,setIsDarkMode] = useState(true)
+    const [isdarkMode,setIsDarkMode] = useState(false)
     // function toggleDark(){
     //     setIsDarkMode(!isdarkMode)
        
