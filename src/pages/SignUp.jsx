@@ -199,7 +199,7 @@ function SignUp() {
       //   </div>
       // </div>
     // </div>
-    <div className='container mx-auto '>
+    <div className='container min-h-screen mx-auto'>
         <div className="grid items-center justify-center min-h-screen grid-cols-1 gap-2 p-2 mt-4 md:grid-cols-6 md:gap-4 md:p-4 md:mt-0">
             <div className="col-span-4 max-w-[96%] flex flex-col border ml-2 p-4 rounded-lg">
               <div>

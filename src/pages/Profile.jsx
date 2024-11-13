@@ -121,7 +121,7 @@ function Profile() {
         navigate('/addtodo')
     }
   return (
-    <div className="container mx-auto ">
+    <div className="container min-h-screen mx-auto">
         
         <div className="w-full max-w-sm mx-auto my-8 border rounded-lg shadow-lg bg-inherit">
 

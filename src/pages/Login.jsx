@@ -214,7 +214,7 @@ function Login() {
     //   </div>
       
     // </div>
-    <div className="container mx-auto"> 
+    <div className="container min-h-screen mx-auto"> 
       <div className="grid items-center justify-center min-h-screen grid-cols-1 gap-2 mt-6 md:gap-4 md:grid-cols-2">
           <div className="flex flex-col gap-4 border md:p-8 p-2 rounded-xl shadow-lg max-w-[88%] mx-auto self-center w-full ">
             <h2 className="mb-4 text-4xl font-bold text-center text-gray-200">Login</h2>
