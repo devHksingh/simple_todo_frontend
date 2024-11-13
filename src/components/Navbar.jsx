@@ -72,6 +72,22 @@ function Navbar() {
     }, []);
     
     
+    // Run this on initial load to check saved theme or prefers-color-scheme setting
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+            document.body.classList.add(savedTheme);
+            setIsDarkMode(savedTheme === "dark");
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.body.classList.add("dark");
+            setIsDarkMode(true);
+        } else {
+            document.body.classList.add("light");
+            setIsDarkMode(false);
+        }
+    }, []);
+    
+    
     function handleNavBtn(){
         mobDivEl.style.display='none'
         menuOpenBtnEl.style.display='block'
