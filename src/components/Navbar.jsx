@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import { Link } from "react-router-dom"
 import { FiMenu } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
@@ -14,30 +14,63 @@ function Navbar() {
     const menuCloseBtnEl = document.querySelector('#menu-close-btn')
     const mobDivEl = document.querySelector('#mob-nav-container')
     const [isdarkMode,setIsDarkMode] = useState(true)
-    function toggleDark(){
-        setIsDarkMode(!isdarkMode)
+    // function toggleDark(){
+    //     setIsDarkMode(!isdarkMode)
        
-        if(isdarkMode){
-            localStorage.setItem("theme","dark")
-        }else{
-            localStorage.setItem("theme","light")
-        }
-        const selectedTheme = localStorage.getItem("theme")
-        if(selectedTheme === 'dark'){
-            document.body.classList.add(selectedTheme)
-            document.body.classList.remove('light')
-        }else if(window.matchMedia("prefers-color-schema: dark").matches){
-            console.log("prefers-color-schema: dark");
+    //     if(isdarkMode){
+    //         localStorage.setItem("theme","dark")
+    //     }else{
+    //         localStorage.setItem("theme","light")
+    //     }
+    //     const selectedTheme = localStorage.getItem("theme")
+    //     if(selectedTheme === 'dark'){
+    //         document.body.classList.add(selectedTheme)
+    //         document.body.classList.remove('light')
+    //     }else if(window.matchMedia("prefers-color-schema: dark").matches){
+    //         console.log("prefers-color-schema: dark");
             
-            document.body.classList.remove("light")
-            document.body.classList.add("dark")
-        }else{
-            console.log("LIGHT");
-            document.body.classList.remove("dark")
-            document.body.classList.add("light")
-        }
+    //         document.body.classList.remove("light")
+    //         document.body.classList.add("dark")
+    //     }else{
+    //         console.log("LIGHT");
+    //         document.body.classList.remove("dark")
+    //         document.body.classList.add("light")
+    //     }
         
+    // }
+
+    function toggleDark() {
+        const newTheme = !isdarkMode ? "dark" : "light";
+        setIsDarkMode(!isdarkMode);
+    
+        // Set theme in local storage
+        localStorage.setItem("theme", newTheme);
+    
+        // Apply theme to body
+        if (newTheme === "dark") {
+            document.body.classList.add("dark");
+            document.body.classList.remove("light");
+        } else {
+            document.body.classList.add("light");
+            document.body.classList.remove("dark");
+        }
     }
+    
+    // Run this on initial load to check saved theme or prefers-color-scheme setting
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+            document.body.classList.add(savedTheme);
+            setIsDarkMode(savedTheme === "dark");
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            document.body.classList.add("dark");
+            setIsDarkMode(true);
+        } else {
+            document.body.classList.add("light");
+            setIsDarkMode(false);
+        }
+    }, []);
+    
     
     function handleNavBtn(){
         mobDivEl.style.display='none'
